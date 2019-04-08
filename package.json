@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/frandefreitas/nossaslojas#readme",
   "dependencies": {
+    "consign": "^0.1.6",
     "express": "^4.16.4"
   }
 }
