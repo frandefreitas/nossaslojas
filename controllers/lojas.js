@@ -84,7 +84,7 @@ module.exports = function(app){
         var id = req.params.id;
         var connection = app.persistencia.connectionFactory();
         var lojaDao = new app.persistencia.LojaDao(connection);    
-        lojaDao.buscaPorId(id, function(erro, resultado){   //função de callback
+        lojaDao.buscaPorId(id, function(erro, resultado){ 
             if(erro){
                 console.log('erro ao consultar no banco: ' + erro);
                 res.status(500).send(erro);
@@ -98,8 +98,45 @@ module.exports = function(app){
     });
 
 
+    app.get('/lojas/loja/estado/:estado', function(req, res){
+        var estado = req.params.estado;
+        while (estado.indexOf('+') > -1) {   //retorna o índice da primeira ocorrência do valor especificado
+            estado = estado.replace('+', ' ');
+        }  
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);    
+        console.log(estado);
+        lojaDao.buscaPeloEstado(estado, function(erro, resultado){ 
+            if(erro){
+                console.log('erro ao consultar no banco: ' + erro);
+                res.status(500).send(erro);
+                return;
+            }
+            console.log('Loja: '+ JSON.stringify(resultado));
+            res.json(resultado);
+            return;
+        })
+        console.log('consultando loja pelo estado:' + estado);
+    });
 
 
+
+    app.get('/lojas/loja/', function(req, res){
+        var id = req.params.id;
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);    
+        lojaDao.lista( function(erro, resultado){  
+            if(erro){
+                console.log('erro ao consultar no banco: ' + erro);
+                res.status(500).send(erro);
+                return;
+            }
+            console.log('Loja: '+ JSON.stringify(resultado));
+            res.json(resultado);
+            return;
+        })
+        console.log('consultando loja pelo id:' + id);
+    });
 
 
 
