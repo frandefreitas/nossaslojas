@@ -29,15 +29,43 @@ Depois instalei o Nodemon para agilizar na execução não precisa toda hora estar 
 E para finalizar a instalação foi criado o arquivo o custom-express numa pastar config onde serão definidas algumas configurações e o consign, este último para carregar todos os arquivos da pasta controller.
 
 
+## Instalação do MySQL e configurando a persistência
+A primeira etapa para organizar a persistência do projeto foi instalar o MySQL para isto foi necessário pelo terminal npm install --save mysql.
+
+A próxima etapa foi no próprio PHPMyAdmin criar a base de dados e a tabela.
+CREATE TABLE `lojas` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `endereço` varchar(100) NOT NULL,
+  `telefone` varchar(100) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
+  `horario` varchar(255) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `estado` varchar(15) NOT NULL
+) 
 
 
-"##nossas lojas" 
+No código fonte foi criado o arquivo connectionFactory.js para fazer a conexão com o banco de dados com o código abaixo.
+var mysql  = require('mysql');
 
-### h3
+  function createDBConnection(){
+    return mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'projetonode'
+    });
+  }
 
-## 
-Titulo
+  module.exports = function() {
+    return createDBConnection;
+  }
+
+Além do connectionFactory.js foi criado o LojaDao.js, este arquivo para manipular e ter acessos aos objetos da tabela Loja.
 
 
-#h1
+## Fazer Requisições HTTP
 
+
+### Método POST
+A primeira etapa 
+ 
