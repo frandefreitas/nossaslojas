@@ -80,7 +80,22 @@ module.exports = function(app){
 
 
 
-
+    app.get('/lojas/loja/:id', function(req, res){
+        var id = req.params.id;
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);    
+        lojaDao.buscaPorId(id, function(erro, resultado){   //função de callback
+            if(erro){
+                console.log('erro ao consultar no banco: ' + erro);
+                res.status(500).send(erro);
+                return;
+            }
+            console.log('Loja: '+ JSON.stringify(resultado));
+            res.json(resultado);
+            return;
+        })
+        console.log('consultando loja pelo id:' + id);
+    });
 
 
 
