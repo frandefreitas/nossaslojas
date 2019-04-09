@@ -12,7 +12,7 @@ module.exports = function(app){
     
         var connection = app.persistencia.connectionFactory();
         var lojaDao = new app.persistencia.LojaDao(connection);
-    
+        console.log(loja);
         lojaDao.salva(loja, function(exception, result){
           console.log('loja criada: ' + result);
           res.json(loja);
