@@ -1,10 +1,12 @@
 var express = require('express');
 var consign = require('consign');
 
-module.exports = function() {
+module.exports = function(){
+  var app = express();
 
-    var app = express();
-    consign().into(app);
+  consign()
+   .include('controllers')
+   .into(app);
 
-    return app;
+  return app;
 }
