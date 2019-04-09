@@ -31,6 +31,10 @@ function LojaDao(connection) {
     this._connection.query("select * from lojas where estado = ?", estado ,callback);
   }
 
+  LojaDao.prototype.buscaPeloEstadoCidade = function ([estado, cidade] , callback) {
+    this._connection.query("select * from lojas where estado = ? and cidade= ? ", [estado, cidade] , callback);
+  }
+
   module.exports = function(){
       return LojaDao;
   };
