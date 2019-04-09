@@ -1,0 +1,259 @@
+---
+swagger: "2.0"
+info:
+  description: "API com a finalidade de armazenar as informações de lojas físicas\
+    \ de um e-commerce."
+  version: "1.0.0"
+  title: "Nossas Lojas"
+  termsOfService: "http://localhost:3001/nossaslojas/v1/termo-uso"
+  contact:
+    name: "Suporte"
+    url: "http://localhost:3001/nossaslojas/v1/suporte"
+    email: "contato@nossaslojas.com"
+host: "localhost:3001"
+basePath: "/bytebank-api/v1"
+tags:
+- name: "Loja"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+security:
+- BasicAuth: []
+paths:
+  /lojas/loja/:
+    get:
+      tags:
+      - "Loja"
+      summary: "Listar Lojas"
+      description: "Listar todas as lojas existentes."
+      operationId: "listaTodas"
+      parameters: []
+      responses:
+        200:
+          description: "Consulta de lojas efetuada com sucesso"
+          schema:
+            $ref: "#/definitions/Loja"
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+    post:
+      tags:
+      - "Loja"
+      summary: "Cadastrar Loja"
+      description: "Cadastra uma nova loja"
+      operationId: "cadastraLoja"
+      parameters:
+      - in: "body"
+        name: "loja_"
+        required: false
+        schema:
+          $ref: "#/definitions/Loja"
+      responses:
+        201:
+          description: "Cadastro efetuado com sucesso"
+          schema:
+            $ref: "#/definitions/Loja"
+        400:
+          description: "Requisição invalida"
+        500:
+          description: "Erro interno no servidor"
+      x-swagger-router-controller: "Loja"
+  /lojas/loja/{id}:
+    get:
+      tags:
+      - "Loja"
+      summary: "Loja pelo Id"
+      description: "Consulta uma determinada loja pelo seu id."
+      operationId: "lojaPeloId"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Consulta de loja efetuada com sucesso"
+          schema:
+            $ref: "#/definitions/Loja"
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+    put:
+      tags:
+      - "Loja"
+      summary: "Atualiza Loja"
+      description: "Atualiza os dados da loja tendo como referência seu id."
+      operationId: "atualizaLoja"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "telefone"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "endereco"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "cnpj"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "horario"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "cidade"
+        in: "query"
+        required: true
+        type: "string"
+      - name: "estado"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Loja atualizada com sucesso"
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+    delete:
+      tags:
+      - "Loja"
+      summary: "Exclui a Transação"
+      description: "Exclusão da transação existente na conta do cliente"
+      operationId: "excluiTransacao"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        204:
+          description: "Transação excluida com sucesso."
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+  /lojas/loja/estado/{estado}:
+    get:
+      tags:
+      - "Loja"
+      summary: "Loja pelo Estado"
+      description: "Consulta uma determinada loja pelo seu estado."
+      operationId: "lojaPeloEstado"
+      parameters:
+      - name: "estado"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Consulta de loja efetuada com sucesso"
+          schema:
+            $ref: "#/definitions/Loja"
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+  /lojas/loja/estado/{estado}/{cidade}:
+    get:
+      tags:
+      - "Loja"
+      summary: "Loja pelo Estado e Cidade"
+      description: "Consulta uma determinada loja pelo seu estado e sua cidade."
+      operationId: "lojaPeloEstadoCidade"
+      parameters:
+      - name: "estado"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "cidade"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "Consulta de loja efetuada com sucesso"
+          schema:
+            $ref: "#/definitions/Loja"
+        400:
+          description: "Requisição inválida"
+        401:
+          description: "Requisição não autorizada"
+        500:
+          description: "Erro no servidor"
+      x-swagger-router-controller: "Loja"
+securityDefinitions:
+  BasicAuth:
+    type: "basic"
+definitions:
+  Loja:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 234
+      endereco:
+        type: "string"
+        example: "Rua Ernani Osmar Blass, 417, Ap.2 - Três Vendas."
+      telefone:
+        type: "string"
+        example: "53991626393"
+      cnpj:
+        type: "string"
+        example: "01234567890123"
+        minLength: 14
+        maxLength: 14
+      horario:
+        type: "string"
+        example: "Quarta-feira as 21:45."
+      cidade:
+        type: "string"
+        example: "Pelotas"
+        minLength: 20
+        maxLength: 20
+      estado:
+        type: "string"
+        example: "Rio Grande do Sul"
+        minLength: 20
+        maxLength: 20
+    example:
+      telefone: "53991626393"
+      cidade: "Pelotas"
+      estado: "Rio Grande do Sul"
+      endereco: "Rua Ernani Osmar Blass, 417, Ap.2 - Três Vendas."
+      horario: "Quarta-feira as 21:45."
+      id: 234
+      cnpj: "01234567890123"
