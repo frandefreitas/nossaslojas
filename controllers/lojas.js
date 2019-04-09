@@ -29,11 +29,37 @@ module.exports = function(app){
         var lojaDao = new app.persistencia.LojaDao(connection);
         console.log(loja);
         lojaDao.salva(loja, function(exception, result){
-          console.log('loja criada: ' + result);
-          res.json(loja);
+            console.log('loja criada: ' + result);
+      
+            res.location('/lojas/loja/' + result.insertId);
+      
+            loja.id = result.insertId;
+      
+            res.status(201).json(loja);
         });
       });
 
+
+
+
+
+    app.put('/lojas/loja/:id', function(req, res){
+
+        var loja = req.body;
+        var id = req.params.id;
+        loja.id = id;
+        var connection = app.persistencia.connectionFactory();
+        var lojaDao = new app.persistencia.LojaDao(connection);
+
+        lojaDao.atualiza(loja, function(erro){
+            if (erro){
+            res.status(500).send(erro);
+            return;
+            }
+            console.log('loja editada');
+            res.send(loja);
+        });
+    });
 
 
 
