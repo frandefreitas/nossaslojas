@@ -2,8 +2,8 @@ function LojaDao(connection) {
     this._connection = connection;
   }
 
-  LojaDao.prototype.salva = function(pagamento,callback) {
-      this._connection.query('INSERT INTO lojas SET ?', pagamento, callback);
+  LojaDao.prototype.salva = function(loja,callback) {
+      this._connection.query('INSERT INTO lojas SET ?', loja, callback);
   }
 
   LojaDao.prototype.lista = function(callback) {
@@ -15,5 +15,5 @@ function LojaDao(connection) {
   }
 
   module.exports = function(){
-      return PagamentoDao;
+      return LojaDao;
   };
