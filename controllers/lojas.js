@@ -63,6 +63,23 @@ module.exports = function(app){
 
 
 
+    app.delete('/lojas/loja/:id', function(req, res){
+
+        var id = req.params.id;
+        var connection = app.persistencia.connectionFactory(); 
+        var lojaDao = new app.persistencia.LojaDao(connection);    
+        lojaDao.delete(id, function(erro, resultado){  
+            if(erro){
+                res.status(500).send(erro);
+                return;
+            }
+            console.log('Loja excluida com sucesso');
+            res.status(204).send(id); 
+        });            
+    });
+
+
+
 
 
 

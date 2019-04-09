@@ -14,9 +14,13 @@ function LojaDao(connection) {
       this._connection.query("select * from lojas where id = ?",[id],callback);
   }
 
-  LojaDao.prototype.atualiza = function(pagamento,callback) {
+  LojaDao.prototype.atualiza = function(loja,callback) {
     this._connection
-    .query('UPDATE lojas SET ? where id = ?', [pagamento, pagamento.id], callback);  
+    .query('UPDATE lojas SET ? where id = ?', [loja, loja.id], callback);  
+  }
+
+  LojaDao.prototype.delete = function (id,callback) {
+    this._connection.query("delete from lojas where id = ?", id ,callback);
   }
 
   module.exports = function(){
