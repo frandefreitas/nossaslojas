@@ -37,10 +37,6 @@ paths:
           description: "Consulta de lojas efetuada com sucesso"
           schema:
             $ref: "#/definitions/Loja"
-        400:
-          description: "Requisição inválida"
-        401:
-          description: "Requisição não autorizada"
         500:
           description: "Erro no servidor"
       x-swagger-router-controller: "Loja"
@@ -63,8 +59,6 @@ paths:
             $ref: "#/definitions/Loja"
         400:
           description: "Requisição invalida"
-        500:
-          description: "Erro interno no servidor"
       x-swagger-router-controller: "Loja"
   /lojas/loja/{id}:
     get:
@@ -84,10 +78,6 @@ paths:
           description: "Consulta de loja efetuada com sucesso"
           schema:
             $ref: "#/definitions/Loja"
-        400:
-          description: "Requisição inválida"
-        401:
-          description: "Requisição não autorizada"
         500:
           description: "Erro no servidor"
       x-swagger-router-controller: "Loja"
@@ -130,19 +120,15 @@ paths:
       responses:
         204:
           description: "Loja atualizada com sucesso"
-        400:
-          description: "Requisição inválida"
-        401:
-          description: "Requisição não autorizada"
         500:
           description: "Erro no servidor"
       x-swagger-router-controller: "Loja"
     delete:
       tags:
       - "Loja"
-      summary: "Exclui a Transação"
-      description: "Exclusão da transação existente na conta do cliente"
-      operationId: "excluiTransacao"
+      summary: "Excluir Loja"
+      description: "Exclusão da lojas pelo id"
+      operationId: "excluiLojas"
       parameters:
       - name: "id"
         in: "path"
@@ -177,10 +163,6 @@ paths:
           description: "Consulta de loja efetuada com sucesso"
           schema:
             $ref: "#/definitions/Loja"
-        400:
-          description: "Requisição inválida"
-        401:
-          description: "Requisição não autorizada"
         500:
           description: "Erro no servidor"
       x-swagger-router-controller: "Loja"
@@ -207,10 +189,6 @@ paths:
           description: "Consulta de loja efetuada com sucesso"
           schema:
             $ref: "#/definitions/Loja"
-        400:
-          description: "Requisição inválida"
-        401:
-          description: "Requisição não autorizada"
         500:
           description: "Erro no servidor"
       x-swagger-router-controller: "Loja"

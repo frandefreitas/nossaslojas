@@ -50,13 +50,13 @@ exports.cadastraLoja = function(loja_) {
 
 
 /**
- * Exclui a Transação
- * Exclusão da transação existente na conta do cliente
+ * Excluir Loja
+ * Exclusão da lojas pelo id
  *
  * id Long 
  * no response value expected for this operation
  **/
-exports.excluiTransacao = function(id) {
+exports.excluiLojas = function(id) {
   return new Promise(function(resolve, reject) {
     resolve();
   });

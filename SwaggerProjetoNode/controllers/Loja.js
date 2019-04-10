@@ -31,9 +31,9 @@ module.exports.cadastraLoja = function cadastraLoja (req, res, next) {
     });
 };
 
-module.exports.excluiTransacao = function excluiTransacao (req, res, next) {
+module.exports.excluiLojas = function excluiLojas (req, res, next) {
   var id = req.swagger.params['id'].value;
-  Loja.excluiTransacao(id)
+  Loja.excluiLojas(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
